@@ -11,5 +11,8 @@
     "Widget"
   ],
   "author": "NuVidio",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.0.2"
+  }
 }
