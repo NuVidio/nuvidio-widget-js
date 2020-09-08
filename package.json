@@ -1,6 +1,6 @@
 {
   "name": "nuvidio-widget-js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Package to use NuVidio Widget in js applications",
   "author": "NuVidio",
   "license": "ISC",
