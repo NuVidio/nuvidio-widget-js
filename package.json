@@ -2,8 +2,20 @@
   "name": "nuvidio-widget-js",
   "version": "0.1.0",
   "description": "Package to use NuVidio Widget in js applications",
+  "author": "NuVidio",
+  "license": "ISC",
+  "keywords": [
+    "NuVidio",
+    "Widget"
+  ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NuVidio/nuvidio-widget-js.git"
+  },
+  "bugs": "https://github.com/NuVidio/nuvidio-widget-js/issues",
+  "homepage": "https://github.com/NuVidio/nuvidio-widget-js/",
   "files": [
     "lib/**/*"
   ],
@@ -11,12 +23,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
-  "keywords": [
-    "NuVidio",
-    "Widget"
-  ],
-  "author": "NuVidio",
-  "license": "ISC",
   "devDependencies": {
     "typescript": "^4.0.2"
   }

@@ -19,9 +19,11 @@ function addNuVidioWidget(identifier: string, options?: NuVidioWidgetOptions) {
     container.id = 'nuvidio-widget';
     document.body.appendChild(container);
   }
-  const c = document.createElement('div');
-  c.id = 'nuvidio-widget-container';
-  container.appendChild(c);
+  if (!document.getElementById('nuvidio-widget-container')) {
+    const c = document.createElement('div');
+    c.id = 'nuvidio-widget-container';
+    container.appendChild(c);
+  }
 
   addScripts(container,
     'https://widget.nuvidio.com/js/nuvidio-widget.min.js',
