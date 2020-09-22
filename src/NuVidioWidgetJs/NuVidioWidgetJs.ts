@@ -1,6 +1,6 @@
 import { NuVidioWidgetOptions } from "../types";
 
-function addScripts(container: HTMLElement, ...urls: (string | { url: string;})[]) {
+function addScripts(container: HTMLElement, ...urls: (string | { url: string; callback?: () => any })[]) {
   urls.forEach((u) => {
     const n = document.createElement('script');
     if (typeof u === 'string') n.src = u;
@@ -8,6 +8,9 @@ function addScripts(container: HTMLElement, ...urls: (string | { url: string;})[
       n.src = u.url;
     }
     n.type = 'text/javascript';
+    if (typeof u === 'object' && u.callback) {
+      n.onload = u.callback;
+    }
     container.appendChild(n);
   });
 }
@@ -25,15 +28,17 @@ function addNuVidioWidget(identifier: string, options?: NuVidioWidgetOptions) {
     container.appendChild(c);
   }
 
-  addScripts(container,
-    'https://widget.nuvidio.com/js/nuvidio-widget.min.js',
-  );
-
-  window.addEventListener('load', () => {
-    if ((window as any).NuVidioWidget) {
-      (window as any).NuVidioWidget.init(identifier, options);
+  addScripts(container, {
+    url: 'https://widget.nuvidio.com/js/nuvidio-widget.min.js',
+    callback: () => {
+      if ((window as any).NuVidioWidget) {
+        (window as any).NuVidioWidget.init(identifier, options);
+      } else {
+        throw new Error('Error to load NuVidio Widget');
+      }
     }
-  });
+  }
+  );
 }
 
 function removeNuVidioWidget() {
