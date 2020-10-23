@@ -48,4 +48,12 @@ function removeNuVidioWidget() {
   }
 }
 
-export { addNuVidioWidget, removeNuVidioWidget };
+function changeDepartmentNuVidioWidget(identifier: string, options?: NuVidioWidgetOptions) {
+  if ((window as any).NuVidioWidget) {
+    (window as any).NuVidioWidget.init(identifier, options);
+  } else {
+    throw new Error('NuVidio Widget not loaded');
+  }
+}
+
+export { addNuVidioWidget, removeNuVidioWidget, changeDepartmentNuVidioWidget };
