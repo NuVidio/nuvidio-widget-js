@@ -2,7 +2,7 @@ export interface NuVidioWidgetOptions {
   fabButton?: boolean;
   fabButtonContent?: string;
   errorMessage?: string;
-  open: boolean;
+  open?: boolean;
   clientData?: {
     name?: string;
     email?: string;

@@ -1,5 +1,7 @@
 import { NuVidioWidgetOptions } from "../types";
 
+const WIDGET_BASE_PATH = 'https://widget.nuvidio.com';
+// const WIDGET_BASE_PATH = 'https://hmlwidget.nuvidio.com'
 const nuvidio: any = {
   loaded: false,
   _c: [] 
@@ -40,7 +42,7 @@ function importScripts() {
   }
 
   __addScripts(container, {
-    url: 'https://widget.nuvidio.com/js/nuvidio-widget.min.js',
+    url: `${WIDGET_BASE_PATH}/js/nuvidio-widget.min.js`,
     callback: () => {
       nuvidio.loaded = true;
       nuvidio._c.forEach((f: any[]) => {
@@ -49,12 +51,12 @@ function importScripts() {
             (window as any).NuVidioWidget.init(...f[1]);
         }
       });
+      nuvidio._c = [];
     }
-  }
-  );
+  });
 }
 
-function addDepartment(identifier: string, options?: NuVidioWidgetOptions) {
+function setDepartment(identifier: string, options?: NuVidioWidgetOptions) {
   if (nuvidio.loaded) {
     if ((window as any).NuVidioWidget) {
       (window as any).NuVidioWidget.init(identifier, options);
@@ -74,4 +76,4 @@ function removeWidget() {
 }
 
 
-export default { addDepartment, removeWidget, importScripts };
+export { setDepartment, removeWidget, importScripts };
