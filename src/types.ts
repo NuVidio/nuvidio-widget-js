@@ -1,5 +1,11 @@
 export interface NuVidioWidgetOptions {
   fabButton?: boolean;
   fabButtonContent?: string;
-  buttonsId?: string | string[];
+  errorMessage?: string;
+  open: boolean;
+  clientData?: {
+    name?: string;
+    email?: string;
+    pushToQueue?: boolean;
+  }
 }

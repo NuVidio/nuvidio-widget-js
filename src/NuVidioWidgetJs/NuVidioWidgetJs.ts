@@ -1,6 +1,17 @@
 import { NuVidioWidgetOptions } from "../types";
 
-function addScripts(container: HTMLElement, ...urls: (string | { url: string; callback?: () => any })[]) {
+const nuvidio: any = {
+  loaded: false,
+  _c: [] 
+};
+const methods = ['init'];
+methods.forEach(methodName => {
+  nuvidio[methodName] = function() {
+    nuvidio._c.push([methodName, arguments]);
+  }
+});
+
+function __addScripts(container: HTMLElement, ...urls: (string | { url: string; callback?: () => any })[]) {
   urls.forEach((u) => {
     const n = document.createElement('script');
     if (typeof u === 'string') n.src = u;
@@ -15,7 +26,7 @@ function addScripts(container: HTMLElement, ...urls: (string | { url: string; ca
   });
 }
 
-function addNuVidioWidget(identifier: string, options?: NuVidioWidgetOptions) {
+function importScripts() {
   let container = document.getElementById('nuvidio-widget');
   if (!container) {
     container = document.createElement('div');
@@ -28,32 +39,39 @@ function addNuVidioWidget(identifier: string, options?: NuVidioWidgetOptions) {
     container.appendChild(c);
   }
 
-  addScripts(container, {
+  __addScripts(container, {
     url: 'https://widget.nuvidio.com/js/nuvidio-widget.min.js',
     callback: () => {
-      if ((window as any).NuVidioWidget) {
-        (window as any).NuVidioWidget.init(identifier, options);
-      } else {
-        throw new Error('Error to load NuVidio Widget');
-      }
+      nuvidio.loaded = true;
+      nuvidio._c.forEach((f: any[]) => {
+        switch(f[0]) {
+          case 'init': 
+            (window as any).NuVidioWidget.init(...f[1]);
+        }
+      });
     }
   }
   );
 }
 
-function removeNuVidioWidget() {
+function addDepartment(identifier: string, options?: NuVidioWidgetOptions) {
+  if (nuvidio.loaded) {
+    if ((window as any).NuVidioWidget) {
+      (window as any).NuVidioWidget.init(identifier, options);
+    } else {
+      throw new Error('Error to load NuVidio Widget');
+    }
+  } else {
+    nuvidio.init(identifier, options);
+  }
+}
+
+function removeWidget() {
   const i = document.getElementById('nuvidio-widget');
   if (i) {
     i.remove();
   }
 }
 
-function changeDepartmentNuVidioWidget(identifier: string, options?: NuVidioWidgetOptions) {
-  if ((window as any).NuVidioWidget) {
-    (window as any).NuVidioWidget.init(identifier, options);
-  } else {
-    throw new Error('NuVidio Widget not loaded');
-  }
-}
 
-export { addNuVidioWidget, removeNuVidioWidget, changeDepartmentNuVidioWidget };
+export default { addDepartment, removeWidget, importScripts };
