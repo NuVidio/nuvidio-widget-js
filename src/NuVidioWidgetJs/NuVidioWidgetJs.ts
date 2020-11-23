@@ -48,7 +48,7 @@ function importScripts() {
       nuvidio._c.forEach((f: any[]) => {
         switch(f[0]) {
           case 'init': 
-            (window as any).NuVidioWidget.init(...f[1]);
+            (window as any).NuVidio.init(...f[1]);
         }
       });
       nuvidio._c = [];
@@ -58,8 +58,8 @@ function importScripts() {
 
 function setDepartment(identifier: string, options?: NuVidioWidgetOptions) {
   if (nuvidio.loaded) {
-    if ((window as any).NuVidioWidget) {
-      (window as any).NuVidioWidget.init(identifier, options);
+    if ((window as any).NuVidio) {
+      (window as any).NuVidio.init(identifier, options);
     } else {
       throw new Error('Error to load NuVidio Widget');
     }
