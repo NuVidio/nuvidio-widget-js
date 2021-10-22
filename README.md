@@ -42,6 +42,16 @@ NuVidioWidget.setDepartment('identifier', options);
 
 // ...
 ```
+### Encontrando o identificador de um departamento
+Acessando o portal da [Empresa](https://empresa.nuvidio.com/login), a segunda
+coluna da tabela de listagem de departamentos (Departamentos). Abaixo é possível visualizar como isso é possível:
+<p align="center">
+    <br />
+    <img height="300px" src="/img/how_to_add_a_department.png" />
+    <br />
+    <br />
+</p>
+
 
 Você também pode definir algumas opções para o widget, através do parâmetro `options`. Isso permite a mudança 
 de algumas configurações no comportamento do widget.
@@ -96,6 +106,6 @@ O modelo que usa id é mais confiável, mas pode ser aplicado a apenas 1 botão,
 | tel              | `string`      | ❌       | -        | Telefone do cliente.                                                                                                                                                                                                        |
 | pushToQueue      | `boolean`     | ❌       | false    | Esta opção define se os dados do cliente serão enviados para a fila sem confirmação do cliente. Se verdadeiro, o cliente será enviado para a fila automaticamente. (campos de nome e tel (ou e-mail) devem ser preenchidos) |
 
-## Contact
+## Contato
 
-Any question or sugestion? You can use the [GitHub Issues](https://github.com/NuVidio/nuvidio-widget-js/issues) or send a email to gustavo@nuvidio.com.br.
+Alguma sugestão? Você pode usar as [GitHub Issues](https://github.com/NuVidio/nuvidio-widget-js/issues) ou enviar um email para ✉ gustavo@nuvidio.com.br.
