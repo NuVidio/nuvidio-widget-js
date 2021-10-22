@@ -1,14 +1,19 @@
 # NuVidio Widget JS
-> Library to use NuVidio Widget in JS applications
+Biblioteca para integrar o **NuVidio Widget** em aplicações javascript.
 
-## Installation
-1. `npm i nuvidio-widget-js`
+## Instalação
+Para instalar, basta rodar o comando abaixo no terminal de preferência.
+```shell
+  npm i nuvidio-widget-js
+```
 
-## Usage
+## Como usar
 
-### Import NuVidio Widget Scripts
+## Importação dos scripts
 
-The first thing you must do is import the widget scripts. This import guarantee that the script will be available when you set a department. The import is done through the method `importScripts`:
+A primeira coisa a ser feita, é importar o script do widget.
+Isso garante que o script do widget estará disponível quando um departamento for definido.
+A importação pode ser feita através do método `importScripts`.
 
 ```jsx
 import NuVidioWidget from 'nuvidio-widget-js';
@@ -20,9 +25,13 @@ NuVidioWidget.importScripts();
 // ...
 ```
 
-### Set Department
+### Definir um departamento
 
-To use the NuVidio Widget in your application you must have the unique identifier to the department created in your company account. With the identifier you can use the method `setDepartment` as follow:
+Para usar o NuVidio Widget na sua aplicação, você deve ter o identificar único do
+departamento que foi criado no painel de controle da empresa.
+Com o identificador em mãos, basta utilizar o método `setDepartment`. <br/>
+
+Ex.:
 
 ```jsx
 import NuVidioWidget from 'nuvidio-widget-js';
@@ -34,13 +43,15 @@ NuVidioWidget.setDepartment('identifier', options);
 // ...
 ```
 
-You can set some options for the widget as well. This options allows you to change some configurations of the widget. ([Type `NuVidioWidgetOptions`](#nuvidiowidgetoptions))
+Você também pode definir algumas opções para o widget, através do parâmetro `options`. Isso permite a mudança 
+de algumas configurações no comportamento do widget.
+([Type `NuVidioWidgetOptions`](#nuvidiowidgetoptions))
 
-<b>In case NuVidio Widget is already added to the page the previous configuration will be overlapped.</b>
+> **Atenção**: Caso o **NuVidio Widget** já tenha sido adicionado à página, a <u>configuração anterior será sobreposta</u>
 
-### Remove NuVidio Widget
+### Remover NuVidio Widget
 
-Is possible to remove the widget at any time by using the `removeWidget` method:
+É possível remover o widget a qualquer momento através do método `removeWidget`:
 
 ```jsx
 import NuVidioWidget from 'nuvidio-widget-js';
@@ -52,37 +63,38 @@ NuVidioWidget.removeWidget();
 // ...
 ```
 
-### Using a custom button
+### Usando um botão personalizado
 
-The widget popup can be opened by your own custom button. To use this functionality your button must contain the id or class `nuvidio-widget-button`. E.g.: 
+O pop-up do widget pode ser aberto por seu próprio botão personalizado. Para usar esta funcionalidade, seu botão deve conter o id ou class `nuvidio-widget-button`. <br/> Ex.: 
 
 ```html
 <button id="nuvidio-widget-button" class="any-class-you-want">Widget</button>
 <button class="nuvidio-widget-button any-class-you-want">Widget</button>
 ```
 
-The model using id is more reliable but can be applied to only 1 button, while a class name can be used in multiple buttons.
+O modelo que usa id é mais confiável, mas pode ser aplicado a apenas 1 botão, enquanto um nome de classe pode ser usado em vários botões.
 
 ## API
 
-### NuVidioWidgetOptions
+### Parâmetros aceitos
 
-| <b>Property<b> | Type | Required | Default | Description |
-| -------------- | ------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| fabButton | `boolean`| ❌ | false | This options hides the left-bottom fab button used to open the video popup. |
-| fabButtonContent | `string`| ❌ | Falar agora | Define the text inside the left-bottom fab button. |
-| open | `boolean`| ❌ | false | If this option is set to true, the widget will open when `setDepartment` is called. |
-| errorMessage | `string`| ❌ | default message | Set the default message showed to the user when occurs some error in the widget. |
-| clientData | `object`| ❌ | - | This object is used to pass client's data to the widget. ([Type `clientData`](#clientdata)) |
+| **Property**     | Type          | Required | Default         | Description                                                                                         |
+| --------------   | ------------- | -------- | ----------------| --------------------------------------------------------------------------                          |
+| fabButton        | `boolean`     | ❌       | false           | Esta opção oculta o botão fab inferior esquerdo usado para abrir o pop-up do vídeo.                 |
+| fabButtonContent | `string`      | ❌       | Falar agora     | Define o texto dentro do botão do canto inferior esquerdo.                                          |
+| open             | `boolean`     | ❌       | false           | Se esta opção for definida como verdadeira, o widget será aberto quando setDepartment for chamado.  |
+| errorMessage     | `string`      | ❌       | default message | Configure a mensagem padrão mostrada ao usuário quando ocorrer algum erro no widget.                |
+| clientData       | `object`      | ❌       | -               | Este objeto é usado para passar os dados do cliente para o widget. [(Type clientData)](#clientdata) |
+
 
 #### clientData
 
-
-| <b>Property<b> | Type | Required | Default | Description |
-| -------------- | ------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name | `string`| ❌ | - | Client name. |
-| email | `string`| ❌ | - | Client email (the email field can be filled with another value as cell phone for exemple). |
-| pushToQueue | `boolean`| ❌ | false | This option defines if the client data will be sent to the queue without client confirmation. If true the client will be pushed to the queue automatically. (name and email fields must be filled) |
+| **Property**     | Type          | Required | Default  | Description                                                                                                                                                                                                                 |
+| --------------   | ------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name             | `string`      | ❌       | -        | Nome do cliente.                                                                                                                                                                                                            |
+| email            | `string`      | ❌       | -        | Email do cliente (O campo email pode ser preenchido com um outro valor, como telefone por exemplo).                                                                                                                         |
+| tel              | `string`      | ❌       | -        | Telefone do cliente.                                                                                                                                                                                                        |
+| pushToQueue      | `boolean`     | ❌       | false    | Esta opção define se os dados do cliente serão enviados para a fila sem confirmação do cliente. Se verdadeiro, o cliente será enviado para a fila automaticamente. (campos de nome e tel (ou e-mail) devem ser preenchidos) |
 
 ## Contact
 
